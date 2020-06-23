@@ -25,29 +25,27 @@ Output will be "test.cleaned.fastq"
 Note: You can play with multiple options depending upon your quality and length of reads
 
 C) --> Removal of ribosomal reads with SortMeRNA
+	
 	- Install SortMeRNA  packages from https://bioinfo.lifl.fr/RNA/sortmerna/
-  ############################################################################################### Run this command ########################################################
 	- ~/sortmerna-2.1/sortmerna --ref ~/sortmerna-2.1/rRNA_databases/silva-bac-16s-id90.fasta,~/sortmerna-2.1/index/silva-bac-16s-db --reads test.cleaned.fastq --aligned test.cleaned.fastq.ribosomes --other test.ribodepleted --fastx --num_alignments 0 --log -v
-  #########################################################################################################################################################################
-    Output will be "test.ribodepleted.fastq"
+    
+Output will be "test.ribodepleted.fastq"
 
 #****************
 Step3. Merged, Cleaned, Ribodepleted reads will be mapped on Host genome to get Host and Non-Host reads
 
 	- Install kallisto from http://pachterlab.github.io/kallisto/download
 	- Download Ref Genome in this case Human genome https://www.ncbi.nlm.nih.gov/genome/guide/human/ (GRCh38.cdna.all.fa)
-  
-  ####################################### Run these command #####################################################################
 	- kallisto index -i GRCh38.cdna.all.fa_KallistoIndex GRCh38.cdna.all.fa
 	- kallisto quant -i GRCh38.cdna.all.fa_KallistoIndex -o test --pseudobam --single -l 180 -s 20 test.ribodepleted.fastq -t 120
-        Note: parameters such as -l=Estimated average fragment length, -s=Estimated SD of fragement lenght, -t=number of threds
-        The counts and Tpm values of each transcript are in the "test" folder which can be used for the comparative analysis
-        
+
+Note: parameters such as -l=Estimated average fragment length, -s=Estimated SD of fragement lenght, -t=number of threds
+The counts and Tpm values of each transcript are in the "test" folder which can be used for the comparative analysis
+
 	- ##### To get unmapped Reads #####
 	- samtools view -u -f 4 -F 256 test/pseudoalignments.bam > test.unmapped.bam
 	- samtools sort -n test.unmapped.bam -o test.unmapped.sorted.bam
 	- bedtools bamtofastq -i test.unmapped.sorted.bam -fq test.unmapped.fq
-  ############################################################################################################################
 
 #****************
 Step. Use Unmapped reads (non-host reads) to counts of microbes, their functions and pathways
