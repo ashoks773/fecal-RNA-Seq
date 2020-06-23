@@ -11,7 +11,7 @@ A) --> Merging paired-end reads using PEAR (This step is not required if you hav
 
 	- Install pear from https://cme.h-its.org/exelixis/web/software/pear/doc.html
 	- pear -f test_R1.fastq -r test_R2.fastq -j 350 -o test
-  #########################################################
+	#
 		You will get 4 output of which "assembled.fastq" will be Final merged file to be used
 		Note: In this command you can try multiple options 
 		-j for number of threads, -v for min overlap, -q for quality threshold, -y for memory to be used
