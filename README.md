@@ -10,7 +10,6 @@ Step2. Data Filtering (These initial filtering steps were adopted from samsa2 pi
 A) --> Merging paired-end reads using PEAR (This step is not required if you have Single end reads)
 
 	- Install pear from https://cme.h-its.org/exelixis/web/software/pear/doc.html
-  ############## Run this command #########################
 	- pear -f test_R1.fastq -r test_R2.fastq -j 350 -o test
   #########################################################
 		You will get 4 output of which "assembled.fastq" will be Final merged file to be used
@@ -19,7 +18,6 @@ A) --> Merging paired-end reads using PEAR (This step is not required if you hav
 
 B) --> Quality filtering using Trimmomatic
 	- Install Trimmomatic from http://www.usadellab.org/cms/?page=trimmomatic
-  ####################################### Run this command ########################################################
 	- java -jar trimmomatic-0.36.jar SE -phred33 test.assembled.fastq test.cleaned.fastq SLIDINGWINDOW:4:20 MINLEN:90
   #################################################################################################################
 		Output will be "test.cleaned.fastq"
