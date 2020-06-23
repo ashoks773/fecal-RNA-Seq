@@ -17,11 +17,12 @@ Note: In this command you can try multiple options
 -j for number of threads, -v for min overlap, -q for quality threshold, -y for memory to be used
 
 B) --> Quality filtering using Trimmomatic
+
 	- Install Trimmomatic from http://www.usadellab.org/cms/?page=trimmomatic
 	- java -jar trimmomatic-0.36.jar SE -phred33 test.assembled.fastq test.cleaned.fastq SLIDINGWINDOW:4:20 MINLEN:90
-  #################################################################################################################
-		Output will be "test.cleaned.fastq"
-		Note: You can play with multiple options depending upon your quality and length of reads
+	
+Output will be "test.cleaned.fastq"
+Note: You can play with multiple options depending upon your quality and length of reads
 
 C) --> Removal of ribosomal reads with SortMeRNA
 	- Install SortMeRNA  packages from https://bioinfo.lifl.fr/RNA/sortmerna/
