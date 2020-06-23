@@ -48,6 +48,6 @@ The counts and Tpm values of each transcript are in the "test" folder which can 
 	- bedtools bamtofastq -i test.unmapped.sorted.bam -fq test.unmapped.fq
 
 #****************
-Step. Use Unmapped reads (non-host reads) to counts of microbes, their functions and pathways
+Step4. Use Unmapped reads (non-host reads) to counts of microbes, their functions and pathways
   
   
