@@ -1,10 +1,8 @@
 # fecal-RNA-Seq
 # The exfoliated fecal transcriptome to explore microbiome-host interactions
 
-#****************
 Step1. Fecal sample collection, RNA extraction, mRNA enrichment + rRNA depletion followed by deep Next Generation Sequencing (~50 million reads)
 
-#****************
 Step2. Data Filtering (These initial filtering steps were adopted from samsa2 pipeline)
 
 A) --> Merging paired-end reads using PEAR (This step is not required if you have Single end reads)
@@ -31,7 +29,6 @@ C) --> Removal of ribosomal reads with SortMeRNA
     
 Output will be "test.ribodepleted.fastq"
 
-#****************
 Step3. Merged, Cleaned, Ribodepleted reads will be mapped on Host genome to get Host and Non-Host reads
 
 	- Install kallisto from http://pachterlab.github.io/kallisto/download
@@ -47,7 +44,6 @@ The counts and Tpm values of each transcript are in the "test" folder which can 
 	- samtools sort -n test.unmapped.bam -o test.unmapped.sorted.bam
 	- bedtools bamtofastq -i test.unmapped.sorted.bam -fq test.unmapped.fq
 
-#****************
 Step4. Use Unmapped reads (non-host reads) to counts of microbes, their functions and pathways
   
   
