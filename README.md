@@ -54,10 +54,11 @@ Step4. Convert Transcript IDs to GeneIDs. If you have a single host for example 
 	for i in *tsv; do perl Convert_Tid_Gid_for_singleHost.pl Homo_sapiens.GRCh38.cdna.all.fa "$i"; done;
 	for i in *Gid.txt; do sort -r -n -k5 < "$i" | awk '!x[$1 FS $1]++' | sort -k1 | cut -f1,5,6 > "$i.Representative.txt"; done;
 	
-	# But If user has samples from multiple hosts on which reads were mapped then follow these steps to select the orthologus genes only for the downstream expression analysis - In this case we have fecal samples from Human, Chimpanzee and Gorilla. Depending upon number of hosts the script "Convert_Tid_Gid" should be modified. 1) conver TIDs to GIDs, 2) Make a single file contains HumanTID, HumanGID, ChimpGID, GorillaGID (this file can be generated via running Make_Othologus_Set.pl program on Human chimps orthologs and human gorilla orhtologs files downloaded from Mart), 3) Pick the representative GIDs
+	# But If user has samples from multiple hosts on which reads were mapped then follow these steps to select the orthologus genes only for the downstream expression analysis - In this case we have fecal samples from Human, Chimpanzee and Gorilla. Depending upon number of hosts the script "Convert_Tid_Gid" should be modified. 1) conver TIDs to GIDs, 2) Make a single file contains HumanTID, HumanGID, ChimpGID, GorillaGID (this file can be generated via running Make_Othologus_Set.pl program on Human chimps orthologs and human gorilla orhtologs files downloaded from Mart), 3) Replace GIDs with human GIDs, and 4) Pick the representative GIDs
 	
 	for i in *tsv; do perl Convert_Tid_Gid.pl Homo_sapiens.GRCh38.cdna.all.fa Pan_troglodytes.Pan_tro_3.0.cdna.all.fa Gorilla_gorilla.gorGor4.cdna.all.fa "$i"; done;
 	perl Make_Othologus_Set.pl Human_Chimps_From_Mart.txt Human_Gorilla_From_Mart.txt
+	for i in *Gid.txt; do perl ReplaceWith_Human_OrhoGeneID.pl ../Orthologus_Genes/HumanTG_ChimpG_GorillaG.txt "$i"; done;
 	for i in *Othologus.txt; do sort -r -n -k6 < "$i" | awk '!x[$1 FS $1]++' | sort -k1 | cut -f1,6,7 > "$i.Representative.txt"; done;
 
 
